@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Post;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
+use App\Models\Worship;
+use App\Models\Congregation;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +16,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Admin',
+            'email' => 'admin@kamanga.com',
+            'role' => 'Admin',
         ]);
+
+        User::factory()->count(14)->create();
+        Congregation::factory()->count(20)->create();
+        Post::factory()->count(20)->create();
+        Worship::factory(20)->hasSingers(3)->create();
     }
 }
