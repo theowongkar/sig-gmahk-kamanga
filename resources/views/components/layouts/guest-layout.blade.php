@@ -46,7 +46,7 @@
         @include('components.layouts.partials.guest-navigation')
 
         {{-- Layout Utama --}}
-        <main class="flex-1">
+        <main class="flex-1 bg-gray-50">
             {{ $slot }}
         </main>
 

@@ -11,7 +11,10 @@ class HomeController extends Controller
     public function index()
     {
         // Worship terbaru
-        $worship = Worship::latest()->first();
+        $worship = Worship::where('category', 'Ibadah Sabat')
+            ->where('status', 'Diterima')
+            ->latest()
+            ->first();
 
         // Berita terbaru
         $posts = Post::where('status', 'Terbit')->latest()->take(4)->get();

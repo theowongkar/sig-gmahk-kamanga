@@ -36,8 +36,16 @@
             <a href="{{ route('worship.create') }}"
                 class="px-3 py-2 bg-[#FFBB00] text-white font-semibold rounded-md cursor-pointer hover:bg-yellow-500">Ajukan
                 Ibadah</a>
-            <a href="/"
-                class="px-3 py-2 bg-[#FB6542] text-white font-semibold rounded-md cursor-pointer hover:bg-orange-600">Login</a>
+            @auth
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit"
+                        class="px-3 py-2 bg-[#FB6542] text-white font-semibold rounded-md cursor-pointer hover:bg-orange-600"">Logout</button>
+                </form>
+            @else
+                <a href="{{ route('login') }}"
+                    class="px-3 py-2 bg-[#FB6542] text-white font-semibold rounded-md cursor-pointer hover:bg-orange-600">Login</a>
+            @endauth
         </div>
 
         {{-- Tombol Hamburger (mobile only) --}}
@@ -63,8 +71,16 @@
             <a href="{{ route('worship.create') }}"
                 class="block w-full text-center px-3 py-2 bg-[#FFBB00] text-white font-semibold rounded-md hover:bg-yellow-500">Ajukan
                 Ibadah</a>
-            <a href="/"
-                class="block w-full text-center px-3 py-2 bg-[#FB6542] text-white font-semibold rounded-md hover:bg-orange-600">Login</a>
+            @auth
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit"
+                        class="block w-full text-center px-3 py-2 bg-[#FB6542] text-white font-semibold rounded-md hover:bg-orange-600">Logout</button>
+                </form>
+            @else
+                <a href="{{ route('login') }}"
+                    class="block w-full text-center px-3 py-2 bg-[#FB6542] text-white font-semibold rounded-md hover:bg-orange-600">Login</a>
+            @endauth
         </div>
     </div>
 </div>
