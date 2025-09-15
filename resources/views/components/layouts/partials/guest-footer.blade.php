@@ -2,8 +2,7 @@
     $navLinks = [
         ['name' => 'Beranda', 'route' => route('home')],
         ['name' => 'Tentang Kami', 'route' => route('about')],
-        ['name' => 'Berita', 'route' => '/news'],
-        ['name' => 'Jemaat', 'route' => '/congregation'],
+        ['name' => 'Berita', 'route' => route('post.index')],
         ['name' => 'Ibadah', 'route' => '/worship'],
     ];
 @endphp

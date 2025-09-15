@@ -1,7 +1,7 @@
 <x-guest-layout>
 
     {{-- Judul Halaman --}}
-    <x-slot name="title">Beranda</x-slot>
+    <x-slot name="title">Tentang Kami</x-slot>
 
     {{-- Bagian Banner --}}
     <section class="relative bg-cover bg-center h-72 sm:h-96 flex items-center justify-center px-4"
@@ -19,12 +19,12 @@
     {{-- Bagian Tentang Kami --}}
     <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div class="flex flex-col lg:flex-row items-center lg:gap-12">
-            <!-- Gambar -->
+            {{-- Gambar --}}
             <div class="lg:w-1/2">
                 <img src="{{ asset('img/hero-image.webp') }}" alt="Gereja Advent Kamanga"
                     class="w-full aspect-video rounded-lg shadow-lg transition-transform hover:scale-105">
             </div>
-            <!-- Konten -->
+            {{-- Konten --}}
             <div class="lg:w-1/2 space-y-5">
                 <h2 class="text-xl md:text-3xl font-bold text-[#375E97]">Tentang Kami</h2>
                 <p class="text-gray-700 text-xs md:text-lg text-justify indent-7">
@@ -44,12 +44,12 @@
         </div>
     </section>
 
-    <!-- Bagian Visi dan Misi Kami -->
+    {{-- Bagian Visi dan Misi Kami --}}
     <section class="bg-gray-100">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center">
             <h2 class="mb-5 text-xl md:text-3xl text-[#375E97] font-bold">Visi dan Misi</h2>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-                <!-- Card 1 -->
+                {{-- Card 1 --}}
                 <div
                     class="bg-white rounded-lg shadow-lg p-6 hover:scale-105 transition-transform duration-300 max-w-md mx-auto">
                     <div class="flex justify-center">
@@ -63,7 +63,7 @@
                     <p class="mt-2 text-gray-700 leading-relaxed">Kami memegang teguh Firman Tuhan sebagai panduan hidup
                         yang benar.</p>
                 </div>
-                <!-- Card 2 -->
+                {{-- Card 2 --}}
                 <div
                     class="bg-white rounded-lg shadow-lg p-6 hover:scale-105 transition-transform duration-300 max-w-md mx-auto">
                     <div class="flex justify-center">
@@ -77,7 +77,7 @@
                     <p class="mt-2 text-gray-700 leading-relaxed">Mengasihi sesama seperti Yesus mengasihi kita semua.
                     </p>
                 </div>
-                <!-- Card 3 -->
+                {{-- Card 3 --}}
                 <div
                     class="bg-white rounded-lg shadow-lg p-6 hover:scale-105 transition-transform duration-300 max-w-md mx-auto">
                     <div class="flex justify-center">

@@ -112,14 +112,14 @@
     <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <h1 class="text-xl md:text-2xl font-bold mb-5 uppercase text-center">Berita Terbaru</h1>
 
+        {{-- Card --}}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             @forelse ($posts as $post)
                 <x-cards.post-card :title="$post->title" :content="strip_tags($post->content)" :image="$post->image" :views="$post->views"
-                    :created-at="$post->created_at->diffForHumans()" />
+                    :created-at="$post->created_at->diffForHumans()" :url="route('post.show', $post->slug)" />
             @empty
                 <p class="text-center col-span-3 text-gray-500">Tidak ada berita terbaru.</p>
             @endforelse
-
         </div>
     </section>
 
