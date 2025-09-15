@@ -18,6 +18,7 @@ class Worship extends Model
         'start_time',
         'end_time',
         'location',
+        'status',
     ];
 
     public function preacher()

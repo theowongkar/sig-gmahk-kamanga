@@ -3,7 +3,7 @@
         ['name' => 'Beranda', 'route' => route('home')],
         ['name' => 'Tentang Kami', 'route' => route('about')],
         ['name' => 'Berita', 'route' => route('post.index')],
-        ['name' => 'Ibadah', 'route' => '/worship'],
+        ['name' => 'Ibadah', 'route' => route('worship.index')],
     ];
 @endphp
 

@@ -3,7 +3,7 @@
         ['name' => 'Beranda', 'route' => route('home')],
         ['name' => 'Tentang Kami', 'route' => route('about')],
         ['name' => 'Berita', 'route' => route('post.index')],
-        ['name' => 'Ibadah', 'route' => '#'],
+        ['name' => 'Ibadah', 'route' => route('worship.index')],
     ];
 @endphp
 
@@ -33,7 +33,7 @@
 
         {{-- Tombol Desktop --}}
         <div class="hidden lg:flex gap-x-2">
-            <a href="/"
+            <a href="{{ route('worship.create') }}"
                 class="px-3 py-2 bg-[#FFBB00] text-white font-semibold rounded-md cursor-pointer hover:bg-yellow-500">Ajukan
                 Ibadah</a>
             <a href="/"
@@ -60,7 +60,7 @@
                 class="block hover:underline underline-offset-2 {{ url()->current() === $navLink['route'] ? 'animate-pulse' : '' }}">{{ $navLink['name'] }}</a>
         @endforeach
         <div class="pt-2 space-y-2">
-            <a href="/"
+            <a href="{{ route('worship.create') }}"
                 class="block w-full text-center px-3 py-2 bg-[#FFBB00] text-white font-semibold rounded-md hover:bg-yellow-500">Ajukan
                 Ibadah</a>
             <a href="/"

@@ -23,7 +23,7 @@ class PostController extends Controller
         })
             ->where('status', 'Terbit')
             ->latest()
-            ->paginate(4);
+            ->paginate(12);
 
         return view('posts.index', compact('posts'));
     }

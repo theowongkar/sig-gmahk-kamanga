@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('worships', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('preacher_id')->constrained('congregations')->onDelete('cascade');
-            $table->foreignId('mc_id')->constrained('congregations')->onDelete('cascade');
+            $table->foreignId('preacher_id')->nullable()->constrained('congregations')->onDelete('cascade');
+            $table->foreignId('mc_id')->nullable()->constrained('congregations')->onDelete('cascade');
             $table->string('category');
             $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
             $table->string('location');
+            $table->enum('status', ['Menunggu Persetujuan', 'Diterima'])->default('Menunggu Persetujuan');
             $table->timestamps();
 
             $table->index('category');

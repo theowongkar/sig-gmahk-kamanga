@@ -17,14 +17,15 @@ class WorshipFactory extends Factory
      */
     public function definition(): array
     {
-         return [
+        return [
             'preacher_id' => Congregation::inRandomOrder()->first()?->id,
             'mc_id' => Congregation::inRandomOrder()->first()?->id,
-            'category' => fake()->randomElement(['Ibadah Sabat', 'Sekolah Sabat', 'Persekutuan Doa', 'Ibadah Anak', 'Ibadah Remaja']),
+            'category' => fake()->randomElement(['Ibadah Sabat', 'Kebaktian Rumah Tangga', 'Pernikahan', 'Kedukaan', 'Ibadah Pemuda Advent', 'Ibadah Remaja Advent']),
             'date' => fake()->dateTimeBetween('now', '+1 year')->format('Y-m-d'),
             'start_time' => fake()->time('H:i:s'),
             'end_time' => fake()->time('H:i:s'),
             'location' => fake()->randomElement(['Gedung Gereja', 'Balai Pertemuan', fake()->address()]),
+            'status' => 'Diterima',
         ];
     }
 }
