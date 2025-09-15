@@ -25,7 +25,7 @@ class PostFactory extends Factory
             'title' => $title,
             'slug' => Str::slug($title) . '-' . fake()->unique()->numberBetween(1, 9999),
             'content' => fake()->paragraphs(3, true),
-            'image' => fake()->optional()->imageUrl(800, 600, 'church', true),
+            'image' => null,
             'status' => fake()->randomElement(['Draf', 'Terbit', 'Arsip']),
             'views' => fake()->numberBetween(0, 500),
         ];
