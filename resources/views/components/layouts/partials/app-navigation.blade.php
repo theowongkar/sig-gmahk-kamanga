@@ -1,7 +1,7 @@
 @php
     $navLinks = [
         ['name' => 'Dashboard', 'route' => route('dashboard')],
-        ['name' => 'Data Jemaat', 'route' => '#'],
+        ['name' => 'Data Jemaat', 'route' => route('dashboard.congregation.index')],
         ['name' => 'Berita', 'route' => '#'],
         ['name' => 'Data Ibadah', 'route' => '#'],
         ['name' => 'Pengajuan Ibadah', 'route' => '#'],

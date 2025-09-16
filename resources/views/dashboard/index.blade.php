@@ -1,7 +1,7 @@
 <x-app-layout>
 
     {{-- Judul Halaman --}}
-    <x-slot name="title">Beranda</x-slot>
+    <x-slot name="title">Dashboard</x-slot>
 
     {{-- Bagian Jemaat --}}
     <section class="mb-8">
