@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\PostController as DashboardPostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
@@ -34,4 +35,12 @@ Route::middleware('auth')->group(function () {
 
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Dashboard Berita
+    Route::get('/dashboard/berita', [DashboardPostController::class, 'index'])->name('dashboard.post.index');
+    Route::get('/dashboard/berita/tambah', [DashboardPostController::class, 'create'])->name('dashboard.post.create');
+    Route::post('/dashboard/berita/tambah', [DashboardPostController::class, 'store'])->name('dashboard.post.store');
+    Route::get('/dashboard/berita/{slug}/ubah', [DashboardPostController::class, 'edit'])->name('dashboard.post.edit');
+    Route::put('/dashboard/berita/{slug}/ubah', [DashboardPostController::class, 'update'])->name('dashboard.post.update');
+    Route::delete('/dashboard/berita/{slug}/hapus', [DashboardPostController::class, 'destroy'])->name('dashboard.post.destroy');
 });
