@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\CongregationController as DashboardCongregationController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\PostController as DashboardPostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
@@ -40,8 +41,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/jemaat', [DashboardCongregationController::class, 'index'])->name('dashboard.congregation.index');
     Route::get('/dashboard/jemaat/tambah', [DashboardCongregationController::class, 'create'])->name('dashboard.congregation.create');
     Route::post('/dashboard/jemaat/tambah', [DashboardCongregationController::class, 'store'])->name('dashboard.congregation.store');
-    Route::get('/dashboard/jemaat/{id}', [DashboardCongregationController::class, 'show'])->name('dashboard.congregation.show');
     Route::get('/dashboard/jemaat/{id}/ubah', [DashboardCongregationController::class, 'edit'])->name('dashboard.congregation.edit');
     Route::put('/dashboard/jemaat/{id}/ubah', [DashboardCongregationController::class, 'update'])->name('dashboard.congregation.update');
     Route::delete('/dashboard/jemaat/{id}/hapus', [DashboardCongregationController::class, 'destroy'])->name('dashboard.congregation.destroy');
+
+    // Dashboard Berita
+    Route::get('/dashboard/berita', [DashboardPostController::class, 'index'])->name('dashboard.post.index');
+    Route::get('/dashboard/berita/tambah', [DashboardPostController::class, 'create'])->name('dashboard.post.create');
+    Route::post('/dashboard/berita/tambah', [DashboardPostController::class, 'store'])->name('dashboard.post.store');
+    Route::get('/dashboard/berita/{slug}/ubah', [DashboardPostController::class, 'edit'])->name('dashboard.post.edit');
+    Route::put('/dashboard/berita/{slug}/ubah', [DashboardPostController::class, 'update'])->name('dashboard.post.update');
+    Route::delete('/dashboard/berita/{slug}/hapus', [DashboardPostController::class, 'destroy'])->name('dashboard.post.destroy');
 });

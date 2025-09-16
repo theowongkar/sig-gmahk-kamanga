@@ -2,7 +2,7 @@
     $navLinks = [
         ['name' => 'Dashboard', 'route' => route('dashboard')],
         ['name' => 'Data Jemaat', 'route' => route('dashboard.congregation.index')],
-        ['name' => 'Berita', 'route' => '#'],
+        ['name' => 'Berita', 'route' => route('dashboard.post.index')],
         ['name' => 'Data Ibadah', 'route' => '#'],
         ['name' => 'Pengajuan Ibadah', 'route' => '#'],
     ];
