@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Worship;
 use App\Models\Congregation;
+use App\Models\WorshipSinger;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,9 +23,20 @@ class DatabaseSeeder extends Seeder
             'role' => 'Admin',
         ]);
 
-        User::factory()->count(14)->create();
-        Congregation::factory()->count(20)->create();
-        Post::factory()->count(20)->create();
-        Worship::factory(20)->hasSingers(3)->create();
+        User::factory(14)->create();
+        $congregations = Congregation::factory(30)->create();
+        Post::factory(30)->create();
+        $worships = Worship::factory(30)->create();
+
+        $worships->each(function ($worship) use ($congregations) {
+            $singerIds = $congregations->random(3)->pluck('id');
+
+            foreach ($singerIds as $singerId) {
+                WorshipSinger::create([
+                    'worship_id' => $worship->id,
+                    'singer_id'  => $singerId,
+                ]);
+            }
+        });
     }
 }

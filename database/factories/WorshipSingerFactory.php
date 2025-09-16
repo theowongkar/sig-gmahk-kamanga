@@ -18,7 +18,7 @@ class WorshipSingerFactory extends Factory
      */
     public function definition(): array
     {
-         return [
+        return [
             'worship_id' => Worship::inRandomOrder()->first()?->id,
             'singer_id' => Congregation::inRandomOrder()->first()?->id,
         ];
