@@ -1,10 +1,26 @@
 @php
     $navLinks = [
-        ['name' => 'Dashboard', 'route' => route('dashboard')],
-        ['name' => 'Data Jemaat', 'route' => route('dashboard.congregation.index')],
-        ['name' => 'Berita', 'route' => route('dashboard.post.index')],
-        ['name' => 'Data Ibadah', 'route' => '#'],
-        ['name' => 'Pengajuan Ibadah', 'route' => '#'],
+        ['name' => 'Dashboard', 'route' => route('dashboard'), 'active' => request()->routeIs('dashboard')],
+        [
+            'name' => 'Data Jemaat',
+            'route' => route('dashboard.congregation.index'),
+            'active' => request()->routeIs('dashboard.congregation.*'),
+        ],
+        [
+            'name' => 'Berita',
+            'route' => route('dashboard.post.index'),
+            'active' => request()->routeIs('dashboard.post.*'),
+        ],
+        [
+            'name' => 'Data Ibadah',
+            'route' => route('dashboard.worship.index'),
+            'active' => request()->routeIs('dashboard.worship.*'),
+        ],
+        [
+            'name' => 'Pengajuan Ibadah',
+            'route' => route('dashboard.request-worship.index'),
+            'active' => request()->routeIs('dashboard.request-worship.*'),
+        ],
     ];
 @endphp
 
@@ -39,7 +55,7 @@
             <h1 class="mb-1 text-xs text-gray-200 font-bold uppercase">MENU :</h1>
             @foreach ($navLinks as $navLink)
                 <a href="{{ $navLink['route'] }}"
-                    class="flex px-4 py-2 text-white text-sm font-semibold rounded {{ url()->current() === $navLink['route'] ? 'bg-blue-500' : 'hover:bg-blue-400' }}">
+                    class="flex px-4 py-2 text-white text-sm font-semibold rounded {{ $navLink['active'] ? 'bg-blue-500' : 'hover:bg-blue-400' }}">
                     <span>{{ $navLink['name'] }}</span>
                 </a>
             @endforeach

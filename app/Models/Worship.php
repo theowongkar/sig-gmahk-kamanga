@@ -33,6 +33,6 @@ class Worship extends Model
 
     public function singers()
     {
-        return $this->belongsToMany(Congregation::class, 'worship_singers', 'worship_id', 'singer_id');
+        return $this->belongsToMany(Congregation::class, 'worship_singers', 'worship_id', 'singer_id')->withTimestamps();
     }
 }

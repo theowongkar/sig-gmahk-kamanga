@@ -4,10 +4,11 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\CongregationController as DashboardCongregationController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\PostController as DashboardPostController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\WorshipController as DashboardWorshipController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\WorshipController;
+use Illuminate\Support\Facades\Route;
 
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -52,4 +53,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/berita/{slug}/ubah', [DashboardPostController::class, 'edit'])->name('dashboard.post.edit');
     Route::put('/dashboard/berita/{slug}/ubah', [DashboardPostController::class, 'update'])->name('dashboard.post.update');
     Route::delete('/dashboard/berita/{slug}/hapus', [DashboardPostController::class, 'destroy'])->name('dashboard.post.destroy');
+
+    // Dashboard Ibadah
+    Route::get('/dashboard/ibadah', [DashboardWorshipController::class, 'index'])->name('dashboard.worship.index');
+    Route::get('/dashboard/ibadah/tambah', [DashboardWorshipController::class, 'create'])->name('dashboard.worship.create');
+    Route::post('/dashboard/ibadah/tambah', [DashboardWorshipController::class, 'store'])->name('dashboard.worship.store');
+    Route::get('/dashboard/ibadah/{id}/ubah', [DashboardWorshipController::class, 'edit'])->name('dashboard.worship.edit');
+    Route::put('/dashboard/ ibadah/{id}/ubah', [DashboardWorshipController::class, 'update'])->name('dashboard.worship.update');
+    Route::delete('/dashboard/ibadah/{id}/hapus', [DashboardWorshipController::class, 'destroy'])->name('dashboard.worship.destroy');
+
+    // Dashboard Ajukan Ibadah
+    Route::get('/dashboard/ajukan-ibadah', [DashboardWorshipController::class, 'requestIndex'])->name('dashboard.request-worship.index');
+    Route::get('/dashboard/ajukan-ibadah/{id}/ubah', [DashboardWorshipController::class, 'requestEdit'])->name('dashboard.request-worship.edit');
+    Route::put('/dashboard/ajukan-ibadah/{id}/ubah', [DashboardWorshipController::class, 'requestUpdate'])->name('dashboard.request-worship.update');
+    Route::delete('/dashboard/ajukan-ibadah/{id}/hapus', [DashboardWorshipController::class, 'requestDestroy'])->name('dashboard.request-worship.destroy');
 });
