@@ -5,11 +5,17 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Congregation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CongregationController extends Controller
 {
     public function index(Request $request)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-congregation')) {
+            abort(403);
+        }
+
         // Validasi Input
         $validated = $request->validate([
             'status' => 'nullable|in:Aktif,Tidak Aktif,Pindah,Meninggal Dunia',
@@ -28,11 +34,11 @@ class CongregationController extends Controller
 
         // Ambil Jemaat
         $congregations = Congregation::query()
-            ->when($status, fn($query) => $query->where('status', $status))
-            ->when($gender, fn($query) => $query->where('gender', $gender))
-            ->when($start_date, fn($query) => $query->where('created_at', '>=', $start_date))
-            ->when($end_date, fn($query) => $query->where('created_at', '<=', $end_date))
-            ->when($search, fn($query) => $query->where('name', 'like', "%{$search}%"))
+            ->when($status, fn ($query) => $query->where('status', $status))
+            ->when($gender, fn ($query) => $query->where('gender', $gender))
+            ->when($start_date, fn ($query) => $query->where('created_at', '>=', $start_date))
+            ->when($end_date, fn ($query) => $query->where('created_at', '<=', $end_date))
+            ->when($search, fn ($query) => $query->where('name', 'like', "%{$search}%"))
             ->orderBy('name', 'ASC')
             ->paginate(20);
 
@@ -41,11 +47,21 @@ class CongregationController extends Controller
 
     public function create()
     {
+        // Cek Izin
+        if (! Gate::allows('manage-congregation')) {
+            abort(403);
+        }
+
         return view('dashboard.congregations.create');
     }
 
     public function store(Request $request)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-congregation')) {
+            abort(403);
+        }
+
         // Validasi Input
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -62,16 +78,26 @@ class CongregationController extends Controller
         return redirect()->route('dashboard.congregation.create')->with('success', 'Data jemaat berhasil ditambahkan.');
     }
 
-    public function edit($id)
+    public function edit(string $id)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-congregation')) {
+            abort(403);
+        }
+
         // Ambil Data Jemaat berdasarkan ID
         $congregation = Congregation::findOrFail($id);
 
         return view('dashboard.congregations.edit', compact('congregation'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-congregation')) {
+            abort(403);
+        }
+
         // Ambil Data Jemaat berdasarkan ID
         $congregation = Congregation::findOrFail($id);
 
@@ -92,8 +118,13 @@ class CongregationController extends Controller
         return redirect()->route('dashboard.congregation.edit', $congregation->id)->with('success', 'Data jemaat berhasil diperbarui.');
     }
 
-    public function destroy($id)
+    public function destroy(string $id)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-congregation')) {
+            abort(403);
+        }
+
         // Ambil Data Jemaat berdasarkan ID
         $congregation = Congregation::findOrFail($id);
 

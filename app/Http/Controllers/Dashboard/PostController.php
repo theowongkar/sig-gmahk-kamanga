@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
     public function index(Request $request)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-post')) {
+            abort(403);
+        }
+
         // Validasi Input
         $validated = $request->validate([
             'status' => 'nullable|in:,Draf,Terbit,Arsip',
@@ -28,10 +34,10 @@ class PostController extends Controller
 
         // Ambil Berita
         $posts = Post::with('author')
-            ->when($search, fn($query) => $query->where('title', 'like', "%{$search}%"))
-            ->when($status, fn($query) => $query->where('status', $status))
-            ->when($start_date, fn($query) => $query->where('created_at', '>=', $start_date))
-            ->when($end_date, fn($query) => $query->where('created_at', '<=', $end_date))
+            ->when($search, fn ($query) => $query->where('title', 'like', "%{$search}%"))
+            ->when($status, fn ($query) => $query->where('status', $status))
+            ->when($start_date, fn ($query) => $query->where('created_at', '>=', $start_date))
+            ->when($end_date, fn ($query) => $query->where('created_at', '<=', $end_date))
             ->orderBy('created_at', 'DESC')
             ->paginate(20);
 
@@ -40,11 +46,21 @@ class PostController extends Controller
 
     public function create()
     {
+        // Cek Izin
+        if (! Gate::allows('manage-post')) {
+            abort(403);
+        }
+
         return view('dashboard.posts.create');
     }
 
     public function store(Request $request)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-post')) {
+            abort(403);
+        }
+
         // Validasi Input
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -68,12 +84,16 @@ class PostController extends Controller
             'image' => $validated['image'] ?? null,
         ]);
 
-
         return redirect()->route('dashboard.post.create')->with('success', 'Berita berhasil ditambahkan.');
     }
 
-    public function update(Request $request, $slug)
+    public function update(Request $request, string $slug)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-post')) {
+            abort(403);
+        }
+
         // Ambil Berita berdasarkan Slug
         $post = Post::where('slug', $slug)->firstOrFail();
 
@@ -107,16 +127,26 @@ class PostController extends Controller
         return redirect()->route('dashboard.post.edit', $post->slug)->with('success', 'Berita berhasil diperbarui.');
     }
 
-    public function edit($slug)
+    public function edit(string $slug)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-post')) {
+            abort(403);
+        }
+
         // Ambil Berita berdasarkan Slug
         $post = Post::where('slug', $slug)->firstOrFail();
 
         return view('dashboard.posts.edit', compact('post'));
     }
 
-    public function destroy($slug)
+    public function destroy(string $slug)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-post')) {
+            abort(403);
+        }
+
         // Ambil Berita berdasarkan Slug
         $post = Post::where('slug', $slug)->firstOrFail();
 

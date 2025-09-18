@@ -1,25 +1,34 @@
 @php
     $navLinks = [
-        ['name' => 'Dashboard', 'route' => route('dashboard'), 'active' => request()->routeIs('dashboard')],
+        [
+            'name' => 'Dashboard',
+            'route' => route('dashboard'),
+            'active' => request()->routeIs('dashboard'),
+            'can' => null, // semua bisa
+        ],
         [
             'name' => 'Data Jemaat',
             'route' => route('dashboard.congregation.index'),
             'active' => request()->routeIs('dashboard.congregation.*'),
+            'can' => 'manage-congregation',
         ],
         [
             'name' => 'Berita',
             'route' => route('dashboard.post.index'),
             'active' => request()->routeIs('dashboard.post.*'),
+            'can' => 'manage-post',
         ],
         [
             'name' => 'Data Ibadah',
             'route' => route('dashboard.worship.index'),
             'active' => request()->routeIs('dashboard.worship.*'),
+            'can' => 'manage-worship',
         ],
         [
             'name' => 'Pengajuan Ibadah',
             'route' => route('dashboard.request-worship.index'),
             'active' => request()->routeIs('dashboard.request-worship.*'),
+            'can' => 'manage-request-worship',
         ],
     ];
 @endphp
@@ -54,10 +63,12 @@
         <div>
             <h1 class="mb-1 text-xs text-gray-200 font-bold uppercase">MENU :</h1>
             @foreach ($navLinks as $navLink)
-                <a href="{{ $navLink['route'] }}"
-                    class="flex px-4 py-2 text-white text-sm font-semibold rounded {{ $navLink['active'] ? 'bg-blue-500' : 'hover:bg-blue-400' }}">
-                    <span>{{ $navLink['name'] }}</span>
-                </a>
+                @if (is_null($navLink['can']) || Gate::allows($navLink['can']))
+                    <a href="{{ $navLink['route'] }}"
+                        class="flex px-4 py-2 text-white text-sm font-semibold rounded {{ $navLink['active'] ? 'bg-blue-500' : 'hover:bg-blue-400' }}">
+                        <span>{{ $navLink['name'] }}</span>
+                    </a>
+                @endif
             @endforeach
         </div>
 

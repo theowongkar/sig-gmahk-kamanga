@@ -6,11 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\Congregation;
 use App\Models\Worship;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class WorshipController extends Controller
 {
     public function index()
     {
+        // Cek Izin
+        if (! Gate::allows('manage-worship')) {
+            abort(403);
+        }
+
         // Ambil Ibadah
         $worships = Worship::with('preacher')
             ->when(request('category'), function ($query, $category) {
@@ -26,6 +32,11 @@ class WorshipController extends Controller
 
     public function requestIndex()
     {
+        // Cek Izin
+        if (! Gate::allows('manage-request-worship')) {
+            abort(403);
+        }
+
         // Ambil Ibadah
         $worships = Worship::with('preacher')
             ->when(request('category'), function ($query, $category) {
@@ -41,6 +52,11 @@ class WorshipController extends Controller
 
     public function create()
     {
+        // Cek Izin
+        if (! Gate::allows('manage-worship')) {
+            abort(403);
+        }
+
         // Ambil Jemaat
         $congregations = Congregation::orderBy('name', 'ASC')->get();
 
@@ -49,6 +65,11 @@ class WorshipController extends Controller
 
     public function store(Request $request)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-worship')) {
+            abort(403);
+        }
+
         // Validasi Input
         $validated = $request->validate([
             'preacher_id' => 'nullable|exists:congregations,id',
@@ -86,6 +107,11 @@ class WorshipController extends Controller
 
     public function edit(string $id)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-worship')) {
+            abort(403);
+        }
+
         // Ambil Ibadah berdasarkan ID
         $worship = Worship::findOrFail($id);
 
@@ -97,6 +123,11 @@ class WorshipController extends Controller
 
     public function requestEdit(string $id)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-request-worship')) {
+            abort(403);
+        }
+
         // Ambil Ibadah berdasarkan ID
         $worship = Worship::findOrFail($id);
 
@@ -108,6 +139,11 @@ class WorshipController extends Controller
 
     public function update(Request $request, string $id)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-worship')) {
+            abort(403);
+        }
+
         // Ambil Ibadah berdasarkan ID
         $worship = Worship::findOrFail($id);
 
@@ -149,6 +185,11 @@ class WorshipController extends Controller
 
     public function requestUpdate(Request $request, string $id)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-request-worship')) {
+            abort(403);
+        }
+
         // Ambil Ibadah berdasarkan ID
         $worship = Worship::findOrFail($id);
 
@@ -190,6 +231,11 @@ class WorshipController extends Controller
 
     public function destroy(string $id)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-worship')) {
+            abort(403);
+        }
+
         // Ambil Data Ibadah berdasarkan ID
         $worship = Worship::findOrFail($id);
 
@@ -201,6 +247,11 @@ class WorshipController extends Controller
 
     public function requestDestroy(string $id)
     {
+        // Cek Izin
+        if (! Gate::allows('manage-request-worship')) {
+            abort(403);
+        }
+
         // Ambil Data Ibadah berdasarkan ID
         $worship = Worship::findOrFail($id);
 
