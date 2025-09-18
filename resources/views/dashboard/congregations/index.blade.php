@@ -135,7 +135,7 @@
         {{-- Table --}}
         <div class="bg-white rounded-lg border border-gray-300 shadow overflow-x-auto">
             <table class="min-w-full text-sm">
-                <thead class="bg-[#141652] text-gray-50">
+                <thead class="bg-[#375E97] text-gray-50">
                     <tr>
                         <th class="p-2 font-normal text-center border-r border-gray-600">#</th>
                         <th class="p-2 font-normal text-left border-r border-gray-600">Nama</th>

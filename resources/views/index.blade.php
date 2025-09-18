@@ -101,7 +101,7 @@
                         @endif
                     </div>
                 </div>
-                <a href="#"
+                <a href="{{ route('worship.index') }}"
                     class="bg-[#FB6542] inline-block mt-4 hover:bg-orange-600 text-white py-1 px-2 rounded-md text-sm">Lihat
                     Jadwal Lainnya...</a>
             </div>

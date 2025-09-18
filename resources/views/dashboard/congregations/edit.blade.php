@@ -1,15 +1,15 @@
 <x-app-layout>
 
     {{-- Judul Halaman --}}
-    <x-slot name="title">Edit Data Jemaat</x-slot>
+    <x-slot name="title">Ubah Data Jemaat</x-slot>
 
-    {{-- Bagian Tambah Jemaat --}}
+    {{-- Bagian Ubah Jemaat --}}
     <section class="space-y-2">
 
         {{-- Flash Message --}}
         <x-alerts.flash-message />
 
-        {{-- Form Tambah Jemaat --}}
+        {{-- Form Ubah Jemaat --}}
         <div class="p-4 bg-white rounded-lg border border-gray-300 shadow">
             <form action="{{ route('dashboard.congregation.update', $congregation->id) }}" method="POST"
                 enctype="multipart/form-data">

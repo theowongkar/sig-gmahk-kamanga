@@ -1,6 +1,6 @@
 @props(['title', 'content', 'image' => null, 'views' => 0, 'createdAt' => null, 'url' => '#'])
 
-<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="flex flex-col bg-white rounded-lg shadow-md overflow-hidden">
     {{-- Thumbnail --}}
     <div class="relative w-full aspect-video">
         <img src="{{ $image ? asset('storage/' . $image) : asset('img/placeholder-image.webp') }}"
@@ -12,7 +12,7 @@
     </div>
 
     {{-- Content --}}
-    <div class="flex flex-col p-5">
+    <div class="flex flex-col flex-1 p-5">
         <div class="flex-1 space-y-1 mb-4">
             <p class="text-sm text-gray-600">{{ $createdAt }}</p>
             <h2 class="font-semibold line-clamp-1">{{ $title }}</h2>

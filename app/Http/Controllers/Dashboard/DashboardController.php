@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Http\Controllers\Controller;
+use App\Models\Congregation;
 use App\Models\Post;
 use App\Models\Worship;
-use App\Models\Congregation;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
@@ -52,7 +51,7 @@ class DashboardController extends Controller
     private function getWorshipData()
     {
         $totalWorship = Worship::count();
-        $latestWorship = Worship::where('category', 'Ibadah Sabat')->where('status', 'Diterima')->latest()->first();
+        $latestWorship = Worship::where('category', 'Ibadah Sabat')->where('status', 'Diterima')->latest('date')->first();
 
         return [
             'total' => $totalWorship,

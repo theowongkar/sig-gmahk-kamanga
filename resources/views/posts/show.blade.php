@@ -30,9 +30,11 @@
             </p>
 
             {{-- Tombol Kembali --}}
-            <x-buttons.primary-button href="{{ route('post.index') }}">
-                Kembali ke daftar berita
-            </x-buttons.primary-button>
+            <div class="mt-5">
+                <x-buttons.primary-button href="{{ route('post.index') }}">
+                    Kembali ke daftar berita
+                </x-buttons.primary-button>
+            </div>
         </div>
     </section>
 

@@ -34,7 +34,7 @@
                 color="bg-purple-500" />
             <x-cards.stats-card :count="$postsData['published']" title="Berita Terbit" subtitle="Jumlah berita terbit"
                 color="bg-green-500" />
-            <x-cards.stats-card :count="$postsData['draft']" title="Draft" subtitle="Jumlah berita draft" color="bg-yellow-500" />
+            <x-cards.stats-card :count="$postsData['draft']" title="Draf" subtitle="Jumlah berita draf" color="bg-yellow-500" />
             <x-cards.stats-card :count="$postsData['archived']" title="Arsip" subtitle="Jumlah berita arsip" color="bg-blue-500" />
         </div>
     </section>
@@ -53,7 +53,7 @@
             <div class="md:col-span-2">
                 <div class="bg-white rounded-xl shadow overflow-hidden hover:scale-105 transition">
                     <div class="bg-red-500">
-                        <h2 class="px-4 py-2 text-white font-semibold">Ibadah Terbaru</h2>
+                        <h2 class="px-4 py-2 text-white text-sm">Ibadah Terdekat</h2>
                     </div>
                     <div class="px-4 py-2">
                         <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center">

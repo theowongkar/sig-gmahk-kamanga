@@ -166,7 +166,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="p-4 text-center text-gray-500">Tidak ada data Berita</td>
+                            <td colspan="7" class="p-4 text-center text-gray-500">Tidak ada data Berita</td>
                         </tr>
                     @endforelse
                 </tbody>
